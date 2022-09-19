@@ -3,6 +3,7 @@
 
 import requests
 import time
+import upstart
 
 url = 'https://api.coindesk.com/v1/bpi/currentprice.json'
 
@@ -62,8 +63,9 @@ def updateText(textToDisplay):
 
 
 while True:
-	result = requests.get(url)
-	rate = result.json()['bpi']['USD']['rate'].replace(',','')
-	
+	#result = requests.get(url)
+	#rate = result.json()['bpi']['USD']['rate'].replace(',','')
+
+	rate = upstart.get_rate()	
 	updateText(str(round(float(rate),2)))
 	time.sleep(10)
